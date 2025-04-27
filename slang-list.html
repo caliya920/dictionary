@@ -1,14 +1,300 @@
-<!DOCTYPE html><html lang="en"><head>  <meta charset="UTF-8" />  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  <title>Slang Word List</title>  <style>    body {      font-family: 'Segoe UI', sans-serif;      background-color: #f8f9f8;      margin: 0;      padding: 2rem;    }
-    h1 {      text-align: center;      color: #f97316;    }
-    ul {      list-style: none;      padding: 0;      max-width: 600px;      margin: 2rem auto;    }
-    li {      background: #fff;      padding: 1rem;      margin: 0.5rem 0;      border-radius: 8px;      box-shadow: 0 2px 5px rgba(0,0,0,0.1);      cursor: pointer;      transition: background 0.2s;    }
-    li:hover {      background: #fef3e2;    }
-    .popup {      display: none;      background: #fff;      border-radius: 8px;      padding: 1rem;      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);      position: fixed;      top: 20%;      left: 50%;      transform: translate(-50%, -20%);      max-width: 400px;      z-index: 10;    }
-    .popup h2 {      color: #f97316;    }
-    .overlay {      display: none;      position: fixed;      top: 0; left: 0; right: 0; bottom: 0;      background: rgba(0, 0, 0, 0.5);      z-index: 5;    }
-    .close-btn {      background: none;      border: none;      font-size: 1.2rem;      color: #f97316;      float: right;      cursor: pointer;    }  </style></head><body>  <h1>Slang Word List</h1>  <ul id="slangList"></ul>
-  <div class="overlay" id="overlay" onclick="closePopup()"></div>  <div class="popup" id="popup">    <button class="close-btn" onclick="closePopup()"> </button>    <h2 id="popupWord"></h2>    <p><strong>Lexical Meaning:</strong> <span id="popupInformal"></span></p>    <p><strong>Slang Definition:</strong> <span id="popupMeaning"></span></p>    <p><strong>Example:</strong> <span id="popupExample"></span></p>     </div>
-  <script>    const dictionary = {      ate: {        informal: "/v/ The past tense of eat meaning to have consumed food.",        Meaning: "To dominate or impress strongly.",        example: "She really ate and left no crumbs.",              },        "Aura/Negative Aura": {        informal: "He gives off such negative aura.",        Meaning: "Vibes or energy, often bad or off-putting.",        example: "Don’t trust him—his aura is off."      },       "Bop": {        informal: "This track is a bop.",        Meaning: "A catchy or good song.",        example: "Turn that up—it’s a bop!"      },      "brain rot": {        informal: "I've been watching TikToks for hours—brain rot.",        Meaning: "Overexposure to low-quality or repetitive content causing mental fatigue.",        example: "Too much scrolling leads to brain rot."      },      "Bruh": {        informal: "Bruh, really?",        Meaning: "An exclamation of disbelief or disappointment.",        example: "Bruh moment."      },      cap: {        informal: "That's cap — you didn't do that!",        Meaning: "Used to call out dishonesty or exaggeration.",        example: "No cap!"      },      "Chad Alpha": {        informal: "He’s acting like a Chad Alpha today.",        Meaning: "A stereotypically confident, dominant male, often exaggerated for humor.",        example: "Total Chad Alpha energy."      },      clout: {        informal: "He's just posting that for clout.",        Meaning: "Power or influence in a social or digital context.",        example: "Clout chaser alert!"      },      cringe: {        informal: "That dance was so cringe.",        Meaning: "To react with discomfort or embarrassment.",        example: "Major cringe moment."      },      delulu: {        informal: "I’m delulu thinking he likes me back.",        Meaning: "A humorous exaggeration of the word 'delusional.'",        example: "Delulu is the solulu."      },      "Drip": {        informal: "Check out his drip.",        Meaning: "Stylish or fashionable outfit or accessories.",        example: "He’s dripping from head to toe."      },      "Fanum Tax": {        informal: "I was eating fries, and he pulled a Fanum Tax.",        Meaning: "The act of taking someone else's food without permission, especially in a funny way.",        example: "I got Fanum Taxed again."      },      flex: {        informal: "He was flexing his new watch.",        Meaning: "To display something with pride.",        example: "That’s a big flex!"      },      "GOAT": {        informal: "LeBron is the GOAT.",        Meaning: "Greatest Of All Time.",        example: "That performance? GOAT level."      },      "Gyatt/Gyat": {        informal: "He saw her and yelled 'gyatt!'",        Meaning: "A slang exclamation expressing awe, often used humorously online.",        example: "That’s a whole lotta gyatt."      },      ick: {        informal: "He said 'moist' and I got the ick.",        Meaning: "A strong turn-off or repulsion, especially in dating.",        example: "He gave me the ick."      },      "It's Giving": {        informal: "It’s giving main character energy.",        Meaning: "Used to describe what a person or situation evokes.",        example: "It’s giving slay."      },      lowkey: {        informal: "I lowkey love that song.",        Meaning: "To a small degree; not openly expressed.",        example: "Lowkey I want to leave early."      },      Mewing: {        informal: "He’s mewing hard for that jawline.",        Meaning: "A technique involving tongue posture to allegedly improve facial structure.",        example: "Bro’s been mewing for six months straight."      },      "Noob": {        informal: "Don’t die in the first round, noob.",        Meaning: "A beginner or inexperienced player.",        example: "Total noob move."      },      "Ohio": {        informal: "Only in Ohio, man.",        Meaning: "Used sarcastically to describe something bizarre or cursed.",        example: "That whole situation was so Ohio."      },      rizz: {        informal: "He's got mad rizz — all the girls like him.",        Meaning: "Charisma, often used in romantic or flirtatious contexts.",        example: "Teach me how to rizz!"      },      "Rizzler": {        informal: "He’s the ultimate Rizzler in class.",        Meaning: "A person who excels at charming or flirting.",        example: "Rizzler status: certified."      },      "Salty": {        informal: "She’s salty because she lost.",        Meaning: "Bitter, upset, or annoyed.",        example: "He’s still salty about the game."      },      "Savage": {        informal: "She roasted him—savage!",        Meaning: "Bold, unapologetic, and brutally honest.",        example: "That comeback was savage."       },      "Sheesh": {        informal: "Sheesh, that’s cold!",        Meaning: "An expression of amazement or disbelief.",        example: "Sheesh! Look at those kicks!"      },      sigma: {        informal: "He’s such a sigma — doesn’t follow the crowd.",        Meaning: "A lone-wolf personality type, strong-willed and independent.",        example: "Sigma grindset."      },      "Simp": {        informal: "He’s simping hard for her.",        Meaning: "Overly attentive or submissive behavior, often toward someone they like.",        example: "Bro turned full simp mode."      },      skibidi: {        informal: "Skibidi toilet memes are everywhere!",        Meaning: "A surreal or absurd phrase used for comic or viral effect.",        example: "Skibidi bop yes yes!"      },      "Skibiddi Ohio Rizz": {        informal: "That meme is pure Skibiddi Ohio Rizz energy.",        Meaning: "A chaotic mashup of meme culture combining absurdity, charm, and internet randomness.",        example: "His humor? Straight up Skibiddi Ohio Rizz."      },      slay: {        informal: "She slayed the presentation!",        Meaning: "To succeed or dominate, especially with style or flair.",        example: "Slay queen!"      },      "Sus": {        informal: "You’re acting sus right now.",        Meaning: "Suspicious or untrustworthy behavior.",        example: "Don’t lie to me. That’s sus."      },      tea: {        informal: "Spill the tea, what happened last night?",        Meaning: "Inside scoop or drama.",        example: "I’ve got the tea!"      },      vibe: {        informal: "That party had such a chill vibe!",        Meaning: "A distinctive feeling or quality.",        example: "Catch the vibe!"      },      "What the Sigma": {        informal: "What the sigma is going on here?",        Meaning: "A parody phrase used to mock stoic or overly masculine behavior.",        example: "He gave a motivational speech and left—what the sigma!"      },      "Yeet": {        informal: "He just yeeted his phone!",        Meaning: "To throw something with force or excitement.",        example: "Yeet that bottle across the room!"      }          };const list = document.getElementById("slangList");
-    for (let word in dictionary) {      const li = document.createElement("li");      li.textContent = word.charAt(0).toUpperCase() + word.slice(1);      li.onclick = () => showPopup(word);      list.appendChild(li);    }
-    function showPopup(word) {      document.getElementById("popupWord").textContent = word.charAt(0).toUpperCase() + word.slice(1);      document.getElementById("popupInformal").textContent = dictionary[word].informal;      document.getElementById("popupMeaning").textContent = dictionary[word].Meaning;      document.getElementById("popupExample").textContent = dictionary[word].example;      document.getElementById("overlay").style.display = "block";      document.getElementById("popup").style.display = "block";    }
-    function closePopup() {      document.getElementById("overlay").style.display = "none";      document.getElementById("popup").style.display = "none";    }  </script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Slang Word List</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9f8;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f97316;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        li {
+            background: #fff;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        li:hover {
+            background: #fef3e2;
+        }
+
+        .popup {
+            display: none;
+            background: #fff;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -20%);
+            max-width: 400px;
+            z-index: 10;
+        }
+
+        .popup h2 {
+            color: #f97316;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #f97316;
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Slang Word List</h1>
+    <ul id="slangList"></ul>
+
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <button class="close-btn" onclick="closePopup()">×</button>
+        <h2 id="popupWord"></h2>
+        <p><strong>Lexical Meaning:</strong> <span id="popupInformal"></span></p>
+        <p><strong>Slang Definition:</strong> <span id="popupMeaning"></span></p>
+        <p><strong>Example:</strong> <span id="popupExample"></span></p>
+
+    </div>
+
+    <script>
+        const dictionary = {
+            ate: {
+                informal: "/v/ The past tense of eat meaning to have consumed food.",
+                Meaning: "To dominate or impress strongly.",
+                example: "She really ate and left no crumbs.",
+
+            },
+            "Aura/Negative Aura": {
+                informal: "He gives off such negative aura.",
+                Meaning: "Vibes or energy, often bad or off-putting.",
+                example: "Don’t trust him—his aura is off."
+            },
+             "Bop": {
+                informal: "This track is a bop.",
+                Meaning: "A catchy or good song.",
+                example: "Turn that up—it’s a bop!"
+            },
+            "brain rot": {
+                informal: "I've been watching TikToks for hours—brain rot.",
+                Meaning: "Overexposure to low-quality or repetitive content causing mental fatigue.",
+                example: "Too much scrolling leads to brain rot."
+            },
+            "Bruh": {
+                informal: "Bruh, really?",
+                Meaning: "An exclamation of disbelief or disappointment.",
+                example: "Bruh moment."
+            },
+            cap: {
+                informal: "That's cap — you didn't do that!",
+                Meaning: "Used to call out dishonesty or exaggeration.",
+                example: "No cap!"
+            },
+            "Chad Alpha": {
+                informal: "He’s acting like a Chad Alpha today.",
+                Meaning: "A stereotypically confident, dominant male, often exaggerated for humor.",
+                example: "Total Chad Alpha energy."
+            },
+            clout: {
+                informal: "He's just posting that for clout.",
+                Meaning: "Power or influence in a social or digital context.",
+                example: "Clout chaser alert!"
+            },
+            cringe: {
+                informal: "That dance was so cringe.",
+                Meaning: "To react with discomfort or embarrassment.",
+                example: "Major cringe moment."
+            },
+            delulu: {
+                informal: "I’m delulu thinking he likes me back.",
+                Meaning: "A humorous exaggeration of the word 'delusional.'",
+                example: "Delulu is the solulu."
+            },
+            "Drip": {
+                informal: "Check out his drip.",
+                Meaning: "Stylish or fashionable outfit or accessories.",
+                example: "He’s dripping from head to toe."
+            },
+            "Fanum Tax": {
+                informal: "I was eating fries, and he pulled a Fanum Tax.",
+                Meaning: "The act of taking someone else's food without permission, especially in a funny way.",
+                example: "I got Fanum Taxed again."
+            },
+            flex: {
+                informal: "He was flexing his new watch.",
+                Meaning: "To display something with pride.",
+                example: "That’s a big flex!"
+            },
+            "GOAT": {
+                informal: "LeBron is the GOAT.",
+                Meaning: "Greatest Of All Time.",
+                example: "That performance? GOAT level."
+            },
+            "Gyatt/Gyat": {
+                informal: "He saw her and yelled 'gyatt!'",
+                Meaning: "A slang exclamation expressing awe, often used humorously online.",
+                example: "That’s a whole lotta gyatt."
+            },
+            ick: {
+                informal: "He said 'moist' and I got the ick.",
+                Meaning: "A strong turn-off or repulsion, especially in dating.",
+                example: "He gave me the ick."
+            },
+            "It's Giving": {
+                informal: "It’s giving main character energy.",
+                Meaning: "Used to describe what a person or situation evokes.",
+                example: "It’s giving slay."
+            },
+            lowkey: {
+                informal: "I lowkey love that song.",
+                Meaning: "To a small degree; not openly expressed.",
+                example: "Lowkey I want to leave early."
+            },
+            Mewing: {
+                informal: "He’s mewing hard for that jawline.",
+                Meaning: "A technique involving tongue posture to allegedly improve facial structure.",
+                example: "Bro’s been mewing for six months straight."
+            },
+            "Noob": {
+                informal: "Don’t die in the first round, noob.",
+                Meaning: "A beginner or inexperienced player.",
+                example: "Total noob move."
+            },
+            "Ohio": {
+                informal: "Only in Ohio, man.",
+                Meaning: "Used sarcastically to describe something bizarre or cursed.",
+                example: "That whole situation was so Ohio."
+            },
+            rizz: {
+                informal: "He's got mad rizz — all the girls like him.",
+                Meaning: "Charisma, often used in romantic or flirtatious contexts.",
+                example: "Teach me how to rizz!"
+            },
+            "Rizzler": {
+                informal: "He’s the ultimate Rizzler in class.",
+                Meaning: "A person who excels at charming or flirting.",
+                example: "Rizzler status: certified."
+            },
+            "Salty": {
+                informal: "She’s salty because she lost.",
+                Meaning: "Bitter, upset, or annoyed.",
+                example: "He’s still salty about the game."
+            },
+            "Savage": {
+                informal: "She roasted him—savage!",
+                Meaning: "Bold, unapologetic, and brutally honest.",
+                example: "That comeback was savage."
+            },
+            "Sheesh": {
+                informal: "Sheesh, that’s cold!",
+                Meaning: "An expression of amazement or disbelief.",
+                example: "Sheesh! Look at those kicks!"
+            },
+            sigma: {
+                informal: "He’s such a sigma — doesn’t follow the crowd.",
+                Meaning: "A lone-wolf personality type, strong-willed and independent.",
+                example: "Sigma grindset."
+            },
+            "Simp": {
+                informal: "He’s simping hard for her.",
+                Meaning: "Overly attentive or submissive behavior, often toward someone they like.",
+                example: "Bro turned full simp mode."
+            },
+            skibidi: {
+                informal: "Skibidi toilet memes are everywhere!",
+                Meaning: "A surreal or absurd phrase used for comic or viral effect.",
+                example: "Skibidi bop yes yes!"
+            },
+            "Skibiddi Ohio Rizz": {
+                informal: "That meme is pure Skibiddi Ohio Rizz energy.",
+                Meaning: "A chaotic mashup of meme culture combining absurdity, charm, and internet randomness.",
+                example: "His humor? Straight up Skibiddi Ohio Rizz."
+            },
+            slay: {
+                informal: "She slayed the presentation!",
+                Meaning: "To succeed or dominate, especially with style or flair.",
+                example: "Slay queen!"
+            },
+            "Sus": {
+                informal: "You’re acting sus right now.",
+                Meaning: "Suspicious or untrustworthy behavior.",
+                example: "Don’t lie to me. That’s sus."
+            },
+            tea: {
+                informal: "Spill the tea, what happened last night?",
+                Meaning: "Inside scoop or drama.",
+                example: "I’ve got the tea!"
+            },
+            vibe: {
+                informal: "That party had such a chill vibe!",
+                Meaning: "A distinctive feeling or quality.",
+                example: "Catch the vibe!"
+            },
+            "What the Sigma": {
+                informal: "What the sigma is going on here?",
+                Meaning: "A parody phrase used to mock stoic or overly masculine behavior.",
+                example: "He gave a motivational speech and left—what the sigma!"
+            },
+            "Yeet": {
+                informal: "He just yeeted his phone!",
+                Meaning: "To throw something with force or excitement.",
+                example: "Yeet that bottle across the room!"
+            }
+
+        };
+const list = document.getElementById("slangList");
+
+        for (let word in dictionary) {
+            const li = document.createElement("li");
+            li.textContent = word.charAt(0).toUpperCase() + word.slice(1);
+            li.onclick = () => showPopup(word);
+            list.appendChild(li);
+        }
+
+        function showPopup(word) {
+            document.getElementById("popupWord").textContent = word.charAt(0).toUpperCase() + word.slice(1);
+            document.getElementById("popupInformal").textContent = dictionary[word].informal;
+            document.getElementById("popupMeaning").textContent = dictionary[word].Meaning;
+            document.getElementById("popupExample").textContent = dictionary[word].example;
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
