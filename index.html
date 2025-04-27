@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gen Alpha Word Bank</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9f8;
+      color: #111;
+      text-align: center;
+    }
+
+    header {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 2rem;
+    }
+  .slang-list-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.slang-list-button a {
+  background-color: #f97316;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.slang-list-button a:hover {
+  background-color: #fb923c;
+  transform: scale(1.05);
+}
+
+
+    .highlight {
+      color: #f97316;
+    }
+
+    .icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0;
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem auto;
+      border: 2px solid #ccc;
+      border-radius: 30px;
+      width: 300px;
+      padding: 0.5rem 1rem;
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      flex-grow: 1;
+      background: transparent;
+    }
+
+    .search-bar button {
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .search-bar button svg {
+      stroke: #f97316;
+    }
+
+    .word-section {
+      margin-top: 2rem;
+    }
+
+    .word-section h2 {
+      font-size: 2rem;
+    }
+
+    .word-section h3 {
+      color: #f97316;
+      font-size: 1.8rem;
+      margin: 0.5rem 0;
+    }
+
+    .definition {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .extra-info {
+      font-size: 1rem;
+      color: #444;
+      margin-top: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <header><span class="highlight">Gen Alpha</span> Word Bank</header>
+  
+  <div class="slang-list-button">
+  <a href="slang-list.html">📘 Slang List</a>
+</div>
+
+
+  <!-- Book Icon as Image -->
+  <div class="icons">
+    <img src="https://cdn-icons-png.flaticon.com/512/2702/2702134.png" 
+         alt="Open Book Icon" 
+         style="width: 60px; height: 60px;">
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search slang...">
+    <button onclick="searchWord()">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="24" height="24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="word-section" id="wordSection">
+    <h2>Slang of the day</h2>
+    <h3 id="slangWord">Slay</h3>
+    <div class="definition" id="definition">/slā/ <br>Verb: greatly impress or amuse (someone)</div>
+    <div class="extra-info" id="extraInfo">
+      <p><strong>Informal Use:</strong> "She slayed the presentation!"</p>
+      <p><strong>Lexical Meaning:</strong> To succeed or dominate, especially with style or flair.</p>
+    </div>
+  </div>
+
+  
+      <!-- ✂️ All previous HTML & CSS remains the same -->
+
+<script>
+  const dictionary = {
+    slay: {
+      pronunciation: "/slā/",
+      definition: "Verb: greatly impress or amuse (someone)",
+      informal: "She slayed the presentation!",
+      lexical: "To succeed or dominate, especially with style or flair."
+    },
+    vibe: {
+      pronunciation: "/vīb/",
+      definition: "Noun: a person's emotional state or the atmosphere of a place",
+      informal: "That party had such a chill vibe!",
+      lexical: "A distinctive feeling or quality."
+    },
+    flex: {
+      pronunciation: "/fleks/",
+      definition: "Verb: to show off",
+      informal: "He was flexing his new watch.",
+      lexical: "To bend or move, or to display something with pride."
+    },
+    rizz: {
+      pronunciation: "/riz/",
+      definition: "Noun: charm or style in attracting a romantic partner",
+      informal: "He's got mad rizz — all the girls like him.",
+      lexical: "Charisma, often used in romantic or flirtatious contexts."
+    },
+    skibidi: {
+      pronunciation: "/ski-bi-di/",
+      definition: "Interjection: nonsensical or humorous phrase popularized by memes",
+      informal: "Skibidi toilet memes are everywhere!",
+      lexical: "A surreal or absurd phrase used for comic or viral effect."
+    },
+    cap: {
+      pronunciation: "/kap/",
+      definition: "Noun/Verb: a lie or to lie",
+      informal: "That's cap — you didn't do that!",
+      lexical: "Used to call out dishonesty or exaggeration."
+    },
+    clout: {
+      pronunciation: "/klout/",
+      definition: "Noun: influence or popularity, especially on social media",
+      informal: "He's just posting that for clout.",
+      lexical: "Power or influence in a social or digital context."
+    },
+    ick: {
+      pronunciation: "/ik/",
+      definition: "Noun: a sudden feeling of disgust toward someone you're attracted to",
+      informal: "He said 'moist' and I got the ick.",
+      lexical: "A strong turn-off or repulsion, especially in dating."
+    },
+    lowkey: {
+      pronunciation: "/ˈloʊˌki/",
+      definition: "Adverb: secretly or subtly",
+      informal: "I lowkey love that song.",
+      lexical: "To a small degree; not openly expressed."
+    },
+    sigma: {
+      pronunciation: "/ˈsig-mə/",
+      definition: "Noun: a person, especially a man, who is successful yet independent of social hierarchies",
+      informal: "He’s such a sigma — doesn’t follow the crowd.",
+      lexical: "A personality type seen as lone-wolf, self-sufficient and strong-willed."
+    },
+    ate: {
+      pronunciation: "/āt/",
+      definition: "Verb: performed or presented something extremely well",
+      informal: "She ate that performance up!",
+      lexical: "To dominate or impress strongly, especially in creative performance."
+    },
+    delulu: {
+      pronunciation: "/də-ˈlu-lu/",
+      definition: "Adjective: overly delusional, especially in a funny or harmless way",
+      informal: "I’m delulu thinking he likes me back.",
+      lexical: "A humorous exaggeration of the word 'delusional.'"
+    },
+    cringe: {
+      pronunciation: "/krinj/",
+      definition: "Verb/Noun: something that causes embarrassment or discomfort",
+      informal: "That dance was so cringe.",
+      lexical: "To react with discomfort or embarrassment."
+    },
+    tea: {
+      pronunciation: "/tē/",
+      definition: "Noun: gossip or juicy information",
+      informal: "Spill the tea, what happened last night?",
+      lexical: "Inside scoop or information, often used in drama or gossip contexts."
+    }
+  };
+
+  function searchWord() {
+    const input = document.getElementById('searchInput').value.trim().toLowerCase();
+    const wordSection = document.getElementById('wordSection');
+    const word = dictionary[input];
+
+    if (word) {
+      document.getElementById('slangWord').textContent = capitalize(input);
+      document.getElementById('definition').innerHTML = `${word.pronunciation} <br>${word.definition}`;
+      document.getElementById('extraInfo').innerHTML = `
+        <p><strong>Informal Use:</strong> "${word.informal}"</p>
+        <p><strong>Lexical Meaning:</strong> ${word.lexical}</p>
+      `;
+      document.querySelector('#wordSection h2').style.display = 'none';
+    } else {
+      document.getElementById('slangWord').textContent = 'Not Found';
+      document.getElementById('definition').textContent = 'Try another slang word.';
+      document.getElementById('extraInfo').innerHTML = '';
+      document.querySelector('#wordSection h2').style.display = 'none';
+    }
+  }
+
+  function capitalize(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+</script>
+
+
+   
+</body>
+
+</html>
